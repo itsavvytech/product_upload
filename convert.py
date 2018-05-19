@@ -12,7 +12,9 @@ postfix = '</table></div></div>'
 infix = []
 for row_num in range(sh.nrows):
     row = sh.row(row_num)
-    property_name = row[0].value
-    property_value = row[1].value
-    infix.extend(['<tr><td><b>', str(property_name), '</b></td><td><span>', str(property_value), '</span><br></td></tr>'])
+    property_name = str(row[0].value)
+    property_value = str(row[1].value)
+    if property_value.endswith(".0"):
+        property_value = property_value[:-2]
+    infix.extend(['<tr><td><b>', property_name, '</b></td><td><span>', property_value, '</span><br></td></tr>'])
 print(prefix + ''.join(infix) + postfix)
